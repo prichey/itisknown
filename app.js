@@ -99,7 +99,7 @@ function run() {
       ) {
         addToDb(tweet);
 
-        setTimeout(replyToTweet, 60 * 1000); // wait a minute to not seem so thirsty
+        setTimeout(() => replyToTweet(tweet), 30 * 1000); // wait a 30 seconds to not seem so thirsty
       }
     }
   });
