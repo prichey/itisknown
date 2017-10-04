@@ -1,0 +1,17 @@
+{
+  "name": "itisknown",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "8.4.0"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "lowdb": "^1.0.0",
+    "twitter": "^1.7.1"
+  }
+}
