@@ -64,7 +64,6 @@ function tweetIsUnique(tweet) {
 }
 
 function addToDb(tweet) {
-  console.log('adding to db');
   db
     .get('tweets')
     .push({ id: tweet.id_str })
@@ -73,6 +72,7 @@ function addToDb(tweet) {
 
 function run() {
   const searchString = 'Let it be known';
+
   const stream = client.stream('statuses/filter', { track: searchString });
   stream.on('data', tweet => {
     if (!!tweet) {
@@ -81,8 +81,8 @@ function run() {
         tweetIsUnique(tweet)
       ) {
         addToDb(tweet);
+
         // reply!
-        console.log('replying to tweet', tweet);
         client
           .post('statuses/update', {
             status: `@${tweet.user.screen_name} It is known.`,
