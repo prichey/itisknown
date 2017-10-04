@@ -70,6 +70,23 @@ function addToDb(tweet) {
     .write();
 }
 
+function replyToTweet(tweet) {
+  client
+    .post('statuses/update', {
+      status: `@${tweet.user.screen_name} It is known.`,
+      in_reply_to_status_id: tweet.id_str
+    })
+    .then(res => {
+      console.log(
+        `Successfully replied to tweet ${tweet.text} from @${tweet.user
+          .screen_name}`
+      );
+    })
+    .catch(e => {
+      console.log('error posting reply', e);
+    });
+}
+
 function run() {
   const searchString = 'Let it be known';
 
@@ -82,21 +99,7 @@ function run() {
       ) {
         addToDb(tweet);
 
-        // reply!
-        client
-          .post('statuses/update', {
-            status: `@${tweet.user.screen_name} It is known.`,
-            in_reply_to_status_id: tweet.id_str
-          })
-          .then(res => {
-            console.log(
-              `Successfully replied to tweet ${tweet.text} from @${tweet.user
-                .screen_name}`
-            );
-          })
-          .catch(e => {
-            console.log('error posting reply', e);
-          });
+        setTimeout(replyToTweet, 60 * 1000); // wait a minute to not seem so thirsty
       }
     }
   });
