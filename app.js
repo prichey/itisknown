@@ -78,7 +78,7 @@ function replyToTweet(tweet) {
     })
     .then(res => {
       console.log(
-        `Successfully replied to tweet ${tweet.text} from @${tweet.user
+        `Successfully replied to tweet '${tweet.text}' from @${tweet.user
           .screen_name}`
       );
     })
